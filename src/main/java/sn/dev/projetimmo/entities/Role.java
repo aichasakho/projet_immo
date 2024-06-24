@@ -1,4 +1,4 @@
-package entities;
+package sn.dev.projetimmo.entities;
 
 import javax.persistence.*;
 

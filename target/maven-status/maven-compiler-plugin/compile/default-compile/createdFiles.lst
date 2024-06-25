@@ -1,0 +1,12 @@
+sn\dev\projetimmo\entities\UniteLocation.class
+sn\dev\projetimmo\dao\immeubles\IImmeubleDao.class
+sn\dev\projetimmo\entities\Locataire.class
+sn\dev\projetimmo\entities\Role.class
+sn\dev\projetimmo\dao\immeubles\TestDao.class
+sn\dev\projetimmo\entities\Utilisateur.class
+sn\dev\projetimmo\entities\Paiement.class
+sn\dev\projetimmo\web\immeubles\ImmeubleModel.class
+sn\dev\projetimmo\dao\immeubles\ImmeubleImplDao.class
+sn\dev\projetimmo\web\immeubles\ImmeubleServlet.class
+sn\dev\projetimmo\entities\ContratLocation.class
+sn\dev\projetimmo\entities\Immeuble.class

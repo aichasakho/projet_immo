@@ -13,7 +13,6 @@ import sn.dev.projetimmo.entities.Immeuble;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -32,15 +31,8 @@ public class ImmeubleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       /* String path = request.getServletPath();
-
-        if (path.equalsIgnoreCase("/list.jsp")){
-            System.out.println("IMMO");
-
-            request.getRequestDispatcher("/list.jsp").forward(request, response);
-
-        }*/
-       /* switch (action) {
+        String action = request.getServletPath();
+        switch (action) {
             case "/":
                 // Afficher la liste des immeubles
                 System.out.println("immo");
@@ -61,25 +53,23 @@ public class ImmeubleServlet extends HttpServlet {
             default:
                 // Si l'action n'est pas reconnue, renvoyer une erreur 404
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                break;*/
+                break;
         }
-
+    }
 
     private void showImmeubleList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Récupérer la liste des immeubles depuis le DAO
         List<Immeuble> immeubles = immeubleDao.getImmeubleByMC("");
-        System.out.println("IMMEUBLES" + immeubles) ;
-        request.setAttribute("immeubles",immeubles);
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+        request.setAttribute("immoModel",immeubles);
 
-        /*// Créer un objet ImmeubleModel et le stocker dans la requête
+        // Créer un objet ImmeubleModel et le stocker dans la requête
         ImmeubleModel immeubleModel = new ImmeubleModel();
         immeubleModel.setImmeubles(immeubles);
-        request.setAttribute("immeubles", immeubles);
+        request.setAttribute("immoModel", immeubles);
 
         // Transférer le contrôle à la JSP list.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/list.jsp");
-        dispatcher.forward(request, response);*/
+        dispatcher.forward(request, response);
     }
 
     private void searchImmeubles(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -92,7 +82,7 @@ public class ImmeubleServlet extends HttpServlet {
         ImmeubleModel immeubleModel = new ImmeubleModel();
         immeubleModel.setImmeubles(immeubles);
         immeubleModel.setMotCle(motCle);
-        request.setAttribute("ImmoModel", immeubleModel);
+        request.setAttribute("immoModel", immeubleModel);
 
         // Transférer le contrôle à la JSP list.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/list.jsp");

@@ -10,7 +10,6 @@ public interface IImmeubleDao {
     public Immeuble getImmeubleById(int id);
     public int update(Immeuble immeuble);
     public int delete(int id);
-    public List<Immeuble> getAllImmeubles();
 }
 
 

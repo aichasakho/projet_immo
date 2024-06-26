@@ -93,8 +93,5 @@ public class ImmeubleImplDao implements IImmeubleDao {
         }
     }
 
-    @Override
-    public List<Immeuble> getAllImmeubles() {
-        return null;
-    }
+
 }

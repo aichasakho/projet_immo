@@ -1,7 +1,9 @@
 package sn.dev.projetimmo.entities;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Entity
 public class Immeuble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

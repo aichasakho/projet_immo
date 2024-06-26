@@ -10,7 +10,16 @@ import java.util.List;
 
 public class TestDao {
     public static void main(String[] args) {
-        /*// Création de la factory d'EntityManager
+
+        /*EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager manager = factory.createEntityManager();
+        EntityTransaction transaction = manager.getTransaction();
+        ----------------------------------------------------------------------------
+        */
+
+
+
+       /* // Création de la factory d'EntityManager
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
 
         // Création de l'EntityManager
@@ -18,8 +27,8 @@ public class TestDao {
 
         // Création d'un immeuble et sauvegarde
         Immeuble immeuble = new Immeuble();
-        immeuble.setNom("sakho");
-        immeuble.setAdresse("Fass");
+        immeuble.setNom("ahhdhd");
+        immeuble.setAdresse("hlm");
         immeuble.setDescription("Bien-equipe");
         immeuble.setEquipements("3Etages");
 
@@ -33,7 +42,7 @@ public class TestDao {
         entityManager.close();
         entityManagerFactory.close();*/
 //------------------------------------------------------------
-        // Création de la factory d'EntityManager
+    /*    // Création de la factory d'EntityManager
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
 
 // Création de l'EntityManager
@@ -43,7 +52,7 @@ public class TestDao {
         List<Immeuble> immeubles = entityManager.createQuery("SELECT i FROM Immeuble i", Immeuble.class).getResultList();
 
 // Vérification que la liste n'est pas vide
-        assert !immeubles.isEmpty();
+        assert !((List<?>) immeubles).isEmpty();
 
 // Affichage des immeubles
         for (Immeuble immeuble : immeubles) {
@@ -52,7 +61,7 @@ public class TestDao {
 
 // Fermeture de l'EntityManager et de la factory
         entityManager.close();
-        entityManagerFactory.close();
+        entityManagerFactory.close();*/
 //------------------------------------------------------------
 
 

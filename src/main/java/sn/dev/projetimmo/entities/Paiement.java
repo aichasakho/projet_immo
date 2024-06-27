@@ -1,22 +1,25 @@
 package sn.dev.projetimmo.entities;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Entity
 public class Paiement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "contrat_location_id")
-    private int contratLocationId;
+
     @Basic
     @Column(name = "montant")
     private String montant;
     @Basic
     @Column(name = "datePaiement")
     private String datePaiement;
+    @ManyToOne
+    @JoinColumn(name = "contrat_location_id", referencedColumnName = "id", nullable = false)
+    private ContratLocation contratLocation;
 
     public int getId() {
         return id;
@@ -26,13 +29,7 @@ public class Paiement {
         this.id = id;
     }
 
-    public int getContratLocationId() {
-        return contratLocationId;
-    }
 
-    public void setContratLocationId(int contratLocationId) {
-        this.contratLocationId = contratLocationId;
-    }
 
     public String getMontant() {
         return montant;
@@ -58,7 +55,7 @@ public class Paiement {
         Paiement paiement = (Paiement) o;
 
         if (id != paiement.id) return false;
-        if (contratLocationId != paiement.contratLocationId) return false;
+        if (contratLocation != paiement.contratLocation) return false;
         if (montant != null ? !montant.equals(paiement.montant) : paiement.montant != null) return false;
         if (datePaiement != null ? !datePaiement.equals(paiement.datePaiement) : paiement.datePaiement != null)
             return false;
@@ -69,9 +66,17 @@ public class Paiement {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + contratLocationId;
+        result = 31 * result + (contratLocation != null ? contratLocation.getId() : 0);;
         result = 31 * result + (montant != null ? montant.hashCode() : 0);
         result = 31 * result + (datePaiement != null ? datePaiement.hashCode() : 0);
         return result;
+    }
+
+    public ContratLocation getContratLocationByContratLocationId() {
+        return contratLocation;
+    }
+
+    public void setContratLocationByContratLocationId(ContratLocation contratLocationByContratLocationId) {
+        this.contratLocation = contratLocationByContratLocationId;
     }
 }

@@ -17,22 +17,22 @@
         <div class="card">
             <div class=" center card-header bg-green">Ajout d'un immeubles</div>
             <div class="card-body">
-                <form action="add" method="post">
+                <form action="immeuble?action=add" method="post">
                     <div class="form-group">
                         <label>Nom</label>
-                        <input type="text" class="form-control" name="nom" required>
+                        <input type="text" id="nom" class="form-control" name="nom" required>
                     </div>
                     <div class="form-group">
                         <label>Adresse</label>
-                        <input type="text" class="form-control" name="adresse" required>
+                        <input type="text" id="adresse" class="form-control" name="adresse" required>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <input type="text" class="form-control" name="description" required>
+                        <textarea id="description" class="form-control" name="description" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Equipements</label>
-                        <input type="text" class="form-control" name="equipements" required>
+                        <textarea id="equipements" name="equipements" class="form-control" required></textarea>
                     </div>
                     <div class="center form-group">
                         <input class="btn btn-success"  type="submit" name="valider" value="Enregistrer">

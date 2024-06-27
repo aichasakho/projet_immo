@@ -1,7 +1,10 @@
 package sn.dev.projetimmo.entities;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Collection;
+@Data
 @Entity
 public class Locataire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +23,8 @@ public class Locataire {
     @Basic
     @Column(name = "telephone")
     private String telephone;
-
+    @OneToMany(mappedBy = "locataire")
+    private Collection<ContratLocation> contratLocationsById;
     public int getId() {
         return id;
     }
@@ -85,5 +89,13 @@ public class Locataire {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         return result;
+    }
+
+    public Collection<ContratLocation> getContratLocationsById() {
+        return contratLocationsById;
+    }
+
+    public void setContratLocationsById(Collection<ContratLocation> contratLocationsById) {
+        this.contratLocationsById = contratLocationsById;
     }
 }

@@ -1,29 +1,32 @@
 package sn.dev.projetimmo.entities;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Entity
 @Table(name = "unite_location", schema = "bd_immo", catalog = "")
 public class UniteLocation {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "immeuble_id")
-    private int immeubleId;
-    @Basic
+
     @Column(name = "numUnite")
     private int numUnite;
-    @Basic
+
     @Column(name = "nbPieces")
     private String nbPieces;
-    @Basic
+
     @Column(name = "superficie")
     private String superficie;
-    @Basic
+
     @Column(name = "loyer")
     private String loyer;
+
+    @ManyToOne
+    @JoinColumn(name = "immeuble_id", referencedColumnName = "id", nullable = false)
+    private Immeuble immeuble;
 
     public int getId() {
         return id;
@@ -31,14 +34,6 @@ public class UniteLocation {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getImmeubleId() {
-        return immeubleId;
-    }
-
-    public void setImmeubleId(int immeubleId) {
-        this.immeubleId = immeubleId;
     }
 
     public int getNumUnite() {
@@ -73,31 +68,11 @@ public class UniteLocation {
         this.loyer = loyer;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UniteLocation that = (UniteLocation) o;
-
-        if (id != that.id) return false;
-        if (immeubleId != that.immeubleId) return false;
-        if (numUnite != that.numUnite) return false;
-        if (nbPieces != null ? !nbPieces.equals(that.nbPieces) : that.nbPieces != null) return false;
-        if (superficie != null ? !superficie.equals(that.superficie) : that.superficie != null) return false;
-        if (loyer != null ? !loyer.equals(that.loyer) : that.loyer != null) return false;
-
-        return true;
+    public Immeuble getImmeuble() {
+        return immeuble;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + immeubleId;
-        result = 31 * result + numUnite;
-        result = 31 * result + (nbPieces != null ? nbPieces.hashCode() : 0);
-        result = 31 * result + (superficie != null ? superficie.hashCode() : 0);
-        result = 31 * result + (loyer != null ? loyer.hashCode() : 0);
-        return result;
+    public void setImmeuble(Immeuble immeuble) {
+        this.immeuble = immeuble;
     }
 }

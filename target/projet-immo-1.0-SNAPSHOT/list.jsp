@@ -42,9 +42,9 @@
                         <td>${immeuble.description}</td>
                         <td>${immeuble.equipements}</td>
                         <td class="btn align-items-center">
-                            <a href="immeuble?action=details&id=${immeuble.id}" class="btn btn-secondary btn-sm btn-margin align-items-center"><i class="bi bi-info-circle"></i></a>
-                            <a href="immeuble?action=edit&id=${immeuble.id}" class="btn btn-success btn-sm btn-margin align-items-center" ><i class="bi bi-pencil-square"></i></a>
-                            <a href="immeuble?action=delete&id=${immeuble.id}" class="btn btn-danger btn-sm align-items-center"  onclick="return confirm('Voulez-vous vraiment supprimer cet immeuble ?')" ><i class="bi bi-trash"></i></a>
+                                <a href="immeuble?action=details&id=${immeuble.id}" class="btn btn-info btn-sm btn-margin align-items-center"><i class="bi bi-info-circle"></i></a>
+                                <a href="immeuble?action=edit&id=${immeuble.id}" class="btn btn-warning btn-sm btn-margin align-items-center"><i class="bi bi-pencil-square"></i></a>
+                                <a href="immeuble?action=delete&id=${immeuble.id}" class="btn btn-danger btn-sm align-items-center" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet immeuble?');"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                 </c:forEach>

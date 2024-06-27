@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakho IMMO | Liste</title>
+    <title>Sakho IMMO | Détails</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link type="text/css" rel= "stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel= "stylesheet" href="css/style.css">
@@ -17,33 +17,25 @@
     <div class="spacer  mt-5 container col-md-6 col-md-offset-1">
         <div class="card">
             <div class=" center card-header bg-green">Détail d'un immeuble</div>
-            <div class="card-body">
-                <div>
-                    <label>ID</label>
-                    <code>${immeuble.id}</code>
-                </div>
-                <div>
-                    <label>ID</label>
-                    <code>${immeuble.nom}</code>
-                </div>
-                <div>
-                    <label>ID</label>
-                    <code>${immeuble.adresse}</code>
-                </div>
-                <div>
-                    <label>ID</label>
-                    <code>${immeuble.description}</code>
-                </div>
-                <div>
-                    <label>ID</label>
-                    <code>${immeuble.equipements}</code>
-                </div>
-                <div class="center">
-                    <a class="btn btn-outline-dark" href="immeuble?action=list">Retour à la liste</a>
-                    <a class="btn btn-outline-dark" href="immeuble?action=add">Retour au formulaire d'ajout</a>
-
-                </div>
-
+            <table class="table">
+                <tr>
+                    <th scope="row">Nom:</th>
+                    <td>${immeuble.nom}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Adresse:</th>
+                    <td>${immeuble.adresse}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description:</th>
+                    <td>${immeuble.description}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Equipements:</th>
+                    <td>${immeuble.equipements}</td>
+                </tr>
+            </table>
+            <a href="immeuble?action=list" class="btn btn-secondary">Retour à la liste</a>
 
             </div>
         </div>

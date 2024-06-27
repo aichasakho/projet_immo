@@ -17,31 +17,31 @@
     <div class="card">
         <div class=" center card-header bg-green">Modification d'un immeubles</div>
         <div class="card-body">
-            <form action="update.php" method="post">
-                <div hidden class="form-group">
-                    <label>ID</label>
-                    <input type="number" class="form-control" name="id" value="${immeuble.id}" hidden>
-                </div>
+            <br>
+            <a href="immeuble?action=list" class="btn btn-secondary">Retour à la liste</a>
+            <br><br>
+            <form action="immeuble?action=edit" method="post">
+                    <input type="hidden"  name="id" value="${immeuble.id}">
 
                 <div class="form-group">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" value="${immeuble.nom}" name="nom" required>
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" class="form-control" value="${immeuble.nom}" required>
                 </div>
                 <div class="form-group">
-                    <label>Adresse</label>
-                    <input type="text" class="form-control" value="${immeuble.adresse}" name="adresse" required>
+                    <label for="adresse">Adresse:</label>
+                    <input type="text" id="adresse" name="adresse" class="form-control" value="${immeuble.adresse}" required>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" class="form-control" value="${immeuble.description}" name="description" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" required>${immeuble.description}</textarea>
                 </div>
                 <div class="form-group">
-                    <label>Equipements</label>
-                    <input type="text" class="form-control" value="${immeuble.equipements}" name="equipements" required>
+                    <label for="equipements">Équipements:</label>
+                    <textarea id="equipements" name="equipements" class="form-control" required>${immeuble.equipements}</textarea>
                 </div>
                 <div class="center form-group">
-                    <input class="btn btn-success"  name="modifier" value="Modifier">
-                    <input class="btn btn-danger" type="reset"  name="annuler" value="Annuler">
+                    <button type="submit" class="btn btn-success">Modifier</button>
+                    <button type="reset" class="btn btn-danger">Annuler</button>
 
                 </div>
 

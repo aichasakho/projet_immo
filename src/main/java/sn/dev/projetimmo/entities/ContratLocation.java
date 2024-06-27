@@ -1,7 +1,9 @@
 package sn.dev.projetimmo.entities;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Entity
 @Table(name = "contrat_location", schema = "bd_immo", catalog = "")
 public class ContratLocation {
@@ -9,18 +11,23 @@ public class ContratLocation {
     @Id
     @Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "immeuble_id")
-    private int immeubleId;
+
+    @ManyToOne
+    @JoinColumn(name = "immeuble_id")
+    private Immeuble immeuble;
+
+    @ManyToOne
+    @JoinColumn(name = "locataire_id", referencedColumnName = "id")
+    private Locataire locataire;
+
     @Basic
     @Column(name = "unite_location_id")
     private int uniteLocationId;
-    @Basic
-    @Column(name = "locataire_id")
-    private int locataireId;
+
     @Basic
     @Column(name = "dateDebut")
     private String dateDebut;
+
     @Basic
     @Column(name = "dateFin")
     private String dateFin;
@@ -33,12 +40,19 @@ public class ContratLocation {
         this.id = id;
     }
 
-    public int getImmeubleId() {
-        return immeubleId;
+    public Immeuble getImmeuble() {
+        return immeuble;
     }
 
-    public void setImmeubleId(int immeubleId) {
-        this.immeubleId = immeubleId;
+    public void setImmeuble(Immeuble immeuble) {
+        this.immeuble = immeuble;
+    }
+    public Locataire getLocataire() {
+        return locataire;
+    }
+
+    public void setLocataire(Locataire locataire) {
+        this.locataire = locataire;
     }
 
     public int getUniteLocationId() {
@@ -47,14 +61,6 @@ public class ContratLocation {
 
     public void setUniteLocationId(int uniteLocationId) {
         this.uniteLocationId = uniteLocationId;
-    }
-
-    public int getLocataireId() {
-        return locataireId;
-    }
-
-    public void setLocataireId(int locataireId) {
-        this.locataireId = locataireId;
     }
 
     public String getDateDebut() {
@@ -81,9 +87,9 @@ public class ContratLocation {
         ContratLocation that = (ContratLocation) o;
 
         if (id != that.id) return false;
-        if (immeubleId != that.immeubleId) return false;
+        if (immeuble != that.immeuble) return false;
+        if (locataire != that.locataire) return false;
         if (uniteLocationId != that.uniteLocationId) return false;
-        if (locataireId != that.locataireId) return false;
         if (dateDebut != null ? !dateDebut.equals(that.dateDebut) : that.dateDebut != null) return false;
         if (dateFin != null ? !dateFin.equals(that.dateFin) : that.dateFin != null) return false;
 
@@ -93,9 +99,9 @@ public class ContratLocation {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + immeubleId;
+        result = 31 * result + (immeuble != null ? immeuble.getId() : 0);
+        result = 31 * result + (locataire != null ? locataire.getId() : 0);
         result = 31 * result + uniteLocationId;
-        result = 31 * result + locataireId;
         result = 31 * result + (dateDebut != null ? dateDebut.hashCode() : 0);
         result = 31 * result + (dateFin != null ? dateFin.hashCode() : 0);
         return result;

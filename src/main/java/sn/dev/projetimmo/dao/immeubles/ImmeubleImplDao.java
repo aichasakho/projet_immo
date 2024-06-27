@@ -1,6 +1,5 @@
 package sn.dev.projetimmo.dao.immeubles;
 
-import sn.dev.projetimmo.dao.immeubles.IImmeubleDao;
 import sn.dev.projetimmo.entities.Immeuble;
 
 import javax.persistence.EntityManager;

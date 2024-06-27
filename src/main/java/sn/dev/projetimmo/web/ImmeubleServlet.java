@@ -124,7 +124,6 @@ public class ImmeubleServlet extends HttpServlet {
         try {
             // Récupérer l'ID de l'immeuble à modifier depuis la requête
             int id = Integer.parseInt(request.getParameter("id"));
-
             // Récupérer l'immeuble correspondant depuis le DAO
             Immeuble immeuble = immeubleDao.getImmeubleById(id);
             request.setAttribute("immeubles", immeuble);
@@ -150,19 +149,7 @@ public class ImmeubleServlet extends HttpServlet {
 
     private void addImmeuble(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Récupérer les données du formulaire d'ajout
-            String nom = request.getParameter("nom");
-            String adresse = request.getParameter("adresse");
-            String description = request.getParameter("description");
-            String equipements = request.getParameter("equipements");
-
-            // Créer un nouvel objet Immeuble et le persister dans la base de données via le DAO
-            Immeuble immeuble = new Immeuble();
-            immeuble.setNom(nom);
-            immeuble.setAdresse(adresse);
-            immeuble.setDescription(description);
-            immeuble.setEquipements(equipements);
-
+            Immeuble immeuble = buildImmeubleFromRequest(request);
             immeubleDao.save(immeuble);
             // Rediriger vers la page de la liste des immeubles
             response.sendRedirect("immeuble?action=list");
@@ -178,18 +165,11 @@ public class ImmeubleServlet extends HttpServlet {
             // Récupérer les données du formulaire de modification
 
             int id = Integer.parseInt(request.getParameter("id"));
-            String nom = request.getParameter("nom");
-            String adresse = request.getParameter("adresse");
-            String description = request.getParameter("description");
-            String equipements = request.getParameter("equipements");
 
             // Mettre à jour l'immeuble dans la base de données via le DAO
-            Immeuble immeubleAModifier = immeubleDao.getImmeubleById(id);
-            immeubleAModifier.setNom(nom);
-            immeubleAModifier.setAdresse(adresse);
-            immeubleAModifier.setDescription(description);
-            immeubleAModifier.setEquipements(equipements);
-            immeubleDao.update(immeubleAModifier);
+            Immeuble immeuble = immeubleDao.getImmeubleById(id);
+            updateImmeubleFromRequest(immeuble, request);
+            immeubleDao.update(immeuble);
             response.sendRedirect("immeuble?action=list");
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Immeuble ID");
@@ -198,14 +178,41 @@ public class ImmeubleServlet extends HttpServlet {
         }
     }
 
+    private Immeuble buildImmeubleFromRequest(HttpServletRequest request) {
+        String nom = request.getParameter("nom");
+        String adresse = request.getParameter("adresse");
+        String description = request.getParameter("description");
+        String equipements= request.getParameter("equipements");
+
+        Immeuble immeuble = new Immeuble();
+        immeuble.setNom(nom);
+        immeuble.setAdresse(adresse);
+        immeuble.setDescription(description);
+        immeuble.setEquipements(equipements);
+        return immeuble;
+
+    }
+
+
+    private void updateImmeubleFromRequest(Immeuble immeuble, HttpServletRequest request) {
+        String nom = request.getParameter("nom");
+        String adresse = request.getParameter("adresse");
+        String description = request.getParameter("description");
+        String equipements = request.getParameter("equipements");
+
+        immeuble.setNom(nom);
+        immeuble.setAdresse(adresse);
+        immeuble.setDescription(description);
+        immeuble.setEquipements(equipements);
+
+    }
+
+
     private void deleteImmeuble(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Récupérer l'ID de l'immeuble à supprimer
             int id = Integer.parseInt(request.getParameter("id"));
-
-            // Supprimer l'immeuble de la base de données via le DAO
-            Immeuble immeuble = immeubleDao.getImmeubleById(id);
-            immeubleDao.delete(immeuble.getId());
+            immeubleDao.delete(id);
             response.sendRedirect("immeuble?action=list");
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Immeuble ID");

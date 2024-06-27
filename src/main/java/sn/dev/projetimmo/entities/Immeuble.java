@@ -3,6 +3,8 @@ package sn.dev.projetimmo.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 @Data
 @Entity
 public class Immeuble {
@@ -22,7 +24,8 @@ public class Immeuble {
     @Basic
     @Column(name = "equipements")
     private String equipements;
-
+    @OneToMany(mappedBy = "immeuble")
+    private List<ContratLocation> contratLocations;
     public int getId() {
         return id;
     }
@@ -89,5 +92,13 @@ public class Immeuble {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (equipements != null ? equipements.hashCode() : 0);
         return result;
+    }
+
+    public Collection<ContratLocation> getContratLocations() {
+        return contratLocations;
+    }
+
+    public void setContratLocations(Collection<ContratLocation> contratLocations) {
+        this.contratLocations = (List<ContratLocation>) contratLocations;
     }
 }
